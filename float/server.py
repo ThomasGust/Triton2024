@@ -36,6 +36,16 @@ class BluetoothServer:
     def handle_client(self):
         client_sock, client_info = self.server_sock.accept()
         print("Accepted connection from", client_info)
+        #o: stutter out
+        #i: stutter in
+        #s: stop
+        #d: out
+        #a: in
+        print("o: stutter out")
+        print("i: stutter in")
+        print("s: stop")
+        print("d: out")
+        print("a: in")
 
         try:
             while True:
