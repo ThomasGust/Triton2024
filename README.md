@@ -1,2 +1,2 @@
-# Triton
-Repository for the Triton Underwater Robotics Team. Missing a lot of code right now deployed to pis and arduinos, more will be here soon.
+# Triton Robotics
+Repository for the Triton Underwater Robotics Team. Pretty much all of code is missing from here right now, because it is deployed on devices where it is trickier to use Git, but this will hopefully be changed in the future.
