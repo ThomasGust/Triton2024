@@ -47,6 +47,8 @@ class BluetoothServer:
         print("d: out")
         print("a: in")
 
+        #I will add the key for profiling here later.
+        
         try:
             while True:
                 cmd = input("Enter Command: ")
