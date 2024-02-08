@@ -2,6 +2,9 @@ import bluetooth
 import uuid
 # Remember to double click b if you want to reset the connection manually.
 # Start the server before starting the client otherwise things can get messed up I think.
+
+#Credit to Albert Huang for providing an example bluetooth server in Python. This follows the same general idea, just modularized and with continous input.
+#Most of the interesting code over in this robot happens on the client (raspberry pi), and the motor controller (arduino). I will try to upload the code for these soon.
 def generate_uuid():
     uuid4 = uuid.uuid4()
     return uuid4
