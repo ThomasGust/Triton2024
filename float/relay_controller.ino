@@ -1,5 +1,5 @@
 //The sole purpose of the arduino is to handle all interaction with the relay board
-//This file is not updated on GitHub automatically, it is just here as a reference
+
 int state = 0;
 int motionstate = 0;
 
@@ -73,14 +73,14 @@ void handle_state(int ton, int toff){
 }
 
 void all_in(){
-  for (int i=0; i<=66; i++){
+  for (int i=0; i<=54; i++){
     state = 2;
     handle_state(ontime, offtime);
   }
 }
 
 void all_out(){
-  for (int i=0; i<=66; i++){
+  for (int i=0; i<=54; i++){
     state = 1;
     handle_state(ontime, offtime);
   }
