@@ -66,14 +66,20 @@ class BluetoothServer:
                     break
                 client_sock.send(cmd)
                 if cmd == "q":
-                    data = client_sock.recv(65536*4096)
-                    if sys.getsizeof(data) != 0:
-                        print(data)
-                        data = pickle.loads(data)
-                        print(f"RECEIVED DATA PACKET: {data}")
-                        log_buffer[-30:] = data
-                        with open(fname, "wb") as f:
-                            pickle.dump(log_buffer, f)
+                    lines = []
+                    off = False
+                    while not off:
+                        data = client_sock.recv(1024)
+                        deserialized = pickle.loads(data)
+                        if deserialized == "EOF":
+                            off = True
+                        else:
+                            lines.append(deserialized)
+                    
+                    log_buffer = lines
+                    with open(fname, "wb") as f:
+                        pickle.dump(log_buffer, f)
+            
                 if cmd == "x":
                     client_sock.close()
         except Exception as e:
