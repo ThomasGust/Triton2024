@@ -43,14 +43,6 @@ class BluetoothServer:
         client_sock, client_info = self.server_sock.accept()
         print("Accepted connection from", client_info)
 
-        try:
-            time.sleep(1)
-            client_sock.send("b")
-            time.sleep(1)
-            client_sock.send("b")
-        except Exception as e:
-            print(e, "PASSED")
-
         # r TO START SENSOR THREAD
         # q to QUERY THE SENSOR THREAD
         #o: stutter out
@@ -76,8 +68,9 @@ class BluetoothServer:
                     lines = []
                     off = False
                     while not off:
-                        data = client_sock.recv(1024)
+                        data = client_sock.recv(4096)
                         deserialized = pickle.loads(data)
+                        print(deserialized)
                         if deserialized == "EOF":
                             off = True
                         else:
