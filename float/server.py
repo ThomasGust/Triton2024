@@ -43,11 +43,14 @@ class BluetoothServer:
         client_sock, client_info = self.server_sock.accept()
         print("Accepted connection from", client_info)
 
+        # r TO START SENSOR THREAD
+        # q to QUERY THE SENSOR THREAD
         #o: stutter out
         #i: stutter in
         #s: stop
         #d: out
         #a: in
+        #x: restart script
         print("o: stutter out")
         print("i: stutter in")
         print("s: stop")
@@ -70,6 +73,8 @@ class BluetoothServer:
                         log_buffer[-300:] = data
                         with open(fname, "wb") as f:
                             pickle.dump(log_buffer, f)
+                if cmd == "x":
+                    client_sock.close()
         except Exception as e:
             print(e)
 
