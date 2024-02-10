@@ -43,6 +43,14 @@ class BluetoothServer:
         client_sock, client_info = self.server_sock.accept()
         print("Accepted connection from", client_info)
 
+        try:
+            time.sleep(1)
+            client_sock.send("b")
+            time.sleep(1)
+            client_sock.send("b")
+        except Exception as e:
+            print(e, "PASSED")
+
         # r TO START SENSOR THREAD
         # q to QUERY THE SENSOR THREAD
         #o: stutter out
@@ -58,7 +66,6 @@ class BluetoothServer:
         print("a: in")
 
         #I will add the key for profiling here later.
-        
         try:
             while True:
                 cmd = input("Enter Command: ")
