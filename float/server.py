@@ -1,5 +1,6 @@
 import bluetooth
 import uuid
+import pickle
 # Remember to double click b if you want to reset the connection manually.
 # Start the server before starting the client otherwise things can get messed up I think.
 
@@ -36,6 +37,8 @@ class BluetoothServer:
     def handle_client(self):
         client_sock, client_info = self.server_sock.accept()
         print("Accepted connection from", client_info)
+
+        data = client_sock.recv(65536)
         #o: stutter out
         #i: stutter in
         #s: stop
