@@ -35,9 +35,8 @@ class BluetoothServer:
         self.on = True
 
     def handle_clients(self):
-        print("Waiting for connection on RFCOMM channel: ", self.port)
-
         while self.on:
+            print("Waiting for connection on RFCOMM channel: ", self.port)
             self.handle_client()
     
     def handle_client(self):
