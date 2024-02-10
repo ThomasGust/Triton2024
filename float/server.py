@@ -1,6 +1,9 @@
 import bluetooth
 import uuid
 import pickle
+import sys
+import time
+import os
 # Remember to double click b if you want to reset the connection manually.
 # Start the server before starting the client otherwise things can get messed up I think.
 
@@ -10,7 +13,10 @@ def generate_uuid():
     uuid4 = uuid.uuid4()
     return uuid4
 
-
+fname =  f"float\\logs\\{time.time()}.log"
+with open(fname, "x") as f:
+    _ = f
+log_buffer = []
 class BluetoothServer:
 
     def __init__(self, port, uuid):
@@ -38,9 +44,6 @@ class BluetoothServer:
         client_sock, client_info = self.server_sock.accept()
         print("Accepted connection from", client_info)
 
-        data = client_sock.recv(65536)
-        data = pickle.loads(data)
-        print(f"RECEIVED DATA PACKET: {data}")
         #o: stutter out
         #i: stutter in
         #s: stop
@@ -60,8 +63,16 @@ class BluetoothServer:
                 if cmd == "quit":
                     break
                 client_sock.send(cmd)
+                if cmd == "q":
+                    data = client_sock.recv(65536)
+                    if sys.getsizeof(data) != 0:
+                        data = pickle.loads(data)
+                        print(f"RECEIVED DATA PACKET: {data}")
+                        log_buffer[-300:] = data
+                        with open(fname, "wb") as f:
+                            pickle.dump(log_buffer, f)
         except Exception as e:
-            pass
+            print(e)
 
         print("Disconnected.")
 
