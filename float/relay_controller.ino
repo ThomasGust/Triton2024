@@ -8,30 +8,33 @@ int motionstate = 0;
 int ontime = 50;
 int offtime = 75;
 bool usestate = false;
+int pin1 = 3;
+int pin2 = 4;
 
 void setup() {
   Serial.begin(115200);
-  pinMode(6, OUTPUT);
-  pinMode(5, OUTPUT);
 
-  digitalWrite(6, HIGH);
-  digitalWrite(5, HIGH); 
+  pinMode(pin1, OUTPUT);
+  pinMode(pin2, OUTPUT);
+
+  digitalWrite(pin1, HIGH);
+  digitalWrite(pin2, HIGH); 
 }
 void in(int wt){
-  digitalWrite(6, HIGH);
-  digitalWrite(5, LOW);
+  digitalWrite(pin1, HIGH);
+  digitalWrite(pin2, LOW);
   delay(wt);
 }
 
 void stall(int wt){
-  digitalWrite(5, HIGH);
-  digitalWrite(6, HIGH);
+  digitalWrite(pin2, HIGH);
+  digitalWrite(pin1, HIGH);
   delay(wt);
 }
 
 void out(int wt){
-  digitalWrite(6, LOW);
-  digitalWrite(5, HIGH);
+  digitalWrite(pin1, LOW);
+  digitalWrite(pin2, HIGH);
   delay(wt);
 }
 
@@ -40,7 +43,7 @@ void float_profile(){
   stall(15*1000);
   all_out();
 }
-//66, 73
+//6pin1, 73
 void handle_state(int ton, int toff){
   if (usestate == true){
     int _ton = ton*10;
