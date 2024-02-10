@@ -39,6 +39,8 @@ class BluetoothServer:
         print("Accepted connection from", client_info)
 
         data = client_sock.recv(65536)
+        data = pickle.loads(data)
+        print(f"RECEIVED DATA PACKET: {data}")
         #o: stutter out
         #i: stutter in
         #s: stop
