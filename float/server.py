@@ -9,6 +9,10 @@ import os
 
 #Credit to Albert Huang for providing an example bluetooth server in Python. This follows the same general idea, just modularized and with continous input.
 #Most of the interesting code over in this robot happens on the client (raspberry pi), and the motor controller (arduino). I will try to upload the code for these soon.
+
+#TODO There is a lot more to do here. Firstly, it would probably be a good idea to seperate out different threads for commands and sensor data.
+#TODO The server should try to help the client by providing access to the servers RTC. This will help the client to keep track of time better.
+
 def generate_uuid():
     uuid4 = uuid.uuid4()
     return uuid4
