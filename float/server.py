@@ -4,6 +4,7 @@ import pickle
 import sys
 import time
 import os
+import threading
 # Remember to double click b if you want to reset the connection manually.
 # Start the server before starting the client otherwise things can get messed up I think.
 
@@ -23,72 +24,114 @@ with open(fname, "x") as f:
 log_buffer = []
 class BluetoothServer:
 
-    def __init__(self, command_port, command_uuid, sensor_port, sensor_uuid):
+    def __init__(self, command_port, command_uuid, sensor_port, sensor_uuid, ping_port, ping_uuid):
         self._command_port = command_port
         self.command_sock = bluetooth.BluetoothSocket(bluetooth.RFCOMM)
         self.command_sock.bind(("", self.port))
         self.command_sock.listen(1)
         self.command_port = self.server_sock.getsockname()[1]
 
-        self.command_uuid = uuid
+        self.command_uuid = command_uuid
         # Instead of running everything over 1 socket, we will be using an architecture where we use multiple sockets to send different data.
-        bluetooth.advertise_service(self.command_sock, "FloatServer", service_id=self.command_uuid,
+        bluetooth.advertise_service(self.command_sock, "FloatCommander", service_id=self.command_uuid,
                                     service_classes=[uuid, bluetooth.SERIAL_PORT_CLASS],
                                     profiles=[bluetooth.SERIAL_PORT_PROFILE])
-        self.sensor_uuid
+        
+        self._sensor_port = sensor_port
+        self.sensor_sock = bluetooth.BluetoothSocket(bluetooth.RFCOMM)
+        self.sensor_sock.bind(("", self.port))
+        self.sensor_sock.listen(1)
+        self.sensor_port = self.server_sock.getsockname()[1]
 
+        self.sensor_uuid = sensor_uuid
+
+        bluetooth.advertise_service(self.sensor_sock,"SensorService", service_id=self.sensor_uuid,
+                                    service_classes=[uuid, bluetooth.SERIAL_PORT_CLASS],
+                                    profiles=[bluetooth.SERIAL_PORT_PROFILE])
+        
+        # The purpose of the ping service is to let the rest of the threads understand when the float is in range
+        self._ping_port = ping_port
+        self.ping_sock = bluetooth.BluetoothSocket(bluetooth.RFCOMM)
+        self.ping_sock.bind(("", self.port))
+        self.ping_sock.listen(1)
+        self.ping_port = self.server_sock.getsockname()[1]
+        
+        self.ping_uuid = ping_uuid
+
+        bluetooth.advertise_service(self.ping_sock,"PingService", service_id=self.ping_uuid,
+                                    service_classes=[uuid, bluetooth.SERIAL_PORT_CLASS],
+                                    profiles=[bluetooth.SERIAL_PORT_PROFILE])
+        
         self.on = True
-
-    def handle_clients(self):
-        while self.on:
-            print("Waiting for connection on RFCOMM channel: ", self.port)
-            self.handle_client()
     
+    def command_handler(self):
+        while self.on:
+            print("Waiting for connection on RFCOMM channel: ", self.command_port)
+            self.handle_command()
+
+    def sensor_handler(self):
+        while self.on:
+            print("Waiting for connection on RFCOMM channel: ", self.sensor_port)
+            self.handle_sensor()
+        
+    def ping_handler(self):
+        while self.on:
+            print("Waiting for connection on RFCOMM channel: ", self.ping_port)
+            self.handle_ping()
+
+    def handle_client(self):
+        while self.on:
+            command_thread = threading.Thread(target=self.command_handler)
+            sensor_thread = threading.Thread(target=self.sensor_handler)
+            ping_thread = threading.Thread(target=self.ping_handler)
+            command_thread.start()
+            sensor_thread.start()
+            ping_thread.start()
+            command_thread.join()
+            sensor_thread.join()
+            ping_thread.join()
+    
+    def handle_sensor(self):
+        # This thread should constantly deserialize any data spat out by the sensor
+        # Our client should spit out log data every 5 seconds while it is connected
+        while self.on:
+            lines = []
+            done = False
+            while not done:
+                data = self.sensor_sock.recv(4096)
+                if data == b'':
+                    time.sleep(2)
+                else:
+                    deserialized = pickle.loads(data)
+                    if deserialized == "EOF":
+                        done = True
+                    else:
+                        lines.append(deserialized)
+            
+            # Now we will save the lines to our log file
+            with open(fname, "wb") as f:
+                pickle.dump(lines, f)
+
     def handle_client(self):
         client_sock, client_info = self.server_sock.accept()
         print("Accepted connection from", client_info)
-
-        # r TO START SENSOR THREAD
-        # q to QUERY THE SENSOR THREAD
-        #o: stutter out
-        #i: stutter in
-        #s: stop
-        #d: out
-        #a: in
-        #x: restart script
         print("o: stutter out")
         print("i: stutter in")
         print("s: stop")
         print("d: out")
         print("a: in")
+        print("x: restart script")
+        print("q: query sensor thread")
+        print("r: start sensor thread")
 
         #I will add the key for profiling here later.
-        try:
-            while True:
-                cmd = input("Enter Command: ")
-                if cmd == "quit":
-                    break
-                client_sock.send(cmd)
-                if cmd == "q":
-                    lines = []
-                    off = False
-                    while not off:
-                        data = client_sock.recv(4096)
-                        deserialized = pickle.loads(data)
-                        print(deserialized)
-                        if deserialized == "EOF":
-                            off = True
-                        else:
-                            lines.append(deserialized)
-                    
-                    log_buffer = lines
-                    with open(fname, "wb") as f:
-                        pickle.dump(log_buffer, f)
-            
-                if cmd == "x":
-                    client_sock.close()
-        except Exception as e:
-            print(e)
+        while True:
+            cmd = input("Enter Command: ")
+            if cmd == "quit":
+                break
+            client_sock.send(cmd)
+            if cmd == "x":
+                client_sock.close()
 
         print("Disconnected.")
 
