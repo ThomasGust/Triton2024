@@ -24,7 +24,7 @@ log_buffer = []
 class BluetoothServer:
 
     def __init__(self, command_port, command_uuid, sensor_port, sensor_uuid):
-        self.port = port
+        self._command_port = command_port
         self.command_sock = bluetooth.BluetoothSocket(bluetooth.RFCOMM)
         self.command_sock.bind(("", self.port))
         self.command_sock.listen(1)
