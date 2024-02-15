@@ -24,15 +24,15 @@ log_buffer = []
 class BluetoothServer:
 
     def __init__(self, command_port, command_uuid, sensor_port, sensor_uuid):
-        self._command_port = command_port
+        self._command_port = 
         self.command_sock = bluetooth.BluetoothSocket(bluetooth.RFCOMM)
         self.command_sock.bind(("", self.port))
         self.command_sock.listen(1)
         self.command_port = self.server_sock.getsockname()[1]
 
-        self.command_uuid = command_uuid
+        self.uuid = uuid
         # Instead of running everything over 1 socket, we will be using an architecture where we use multiple sockets to send different data.
-        bluetooth.advertise_service(self.command_uuid, "FloatServer", service_id=self.uuid,
+        bluetooth.advertise_service(self.server_sock, "FloatServer", service_id=self.uuid,
                                     service_classes=[uuid, bluetooth.SERIAL_PORT_CLASS],
                                     profiles=[bluetooth.SERIAL_PORT_PROFILE])
 
