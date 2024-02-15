@@ -28,8 +28,7 @@ class BluetoothServer:
         self.command_sock = bluetooth.BluetoothSocket(bluetooth.RFCOMM)
         self.command_sock.bind(("", self.port))
         self.command_sock.listen(1)
-
-        self.port = self.server_sock.getsockname()[1]
+        self.command_port = self.server_sock.getsockname()[1]
 
         self.uuid = uuid
         # Instead of running everything over 1 socket, we will be using an architecture where we use multiple sockets to send different data.
