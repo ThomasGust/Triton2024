@@ -32,7 +32,7 @@ class BluetoothServer:
 
         self.command_uuid = command_uuid
         # Instead of running everything over 1 socket, we will be using an architecture where we use multiple sockets to send different data.
-        bluetooth.advertise_service(self., "FloatServer", service_id=self.uuid,
+        bluetooth.advertise_service(self.command_uuid, "FloatServer", service_id=self.uuid,
                                     service_classes=[uuid, bluetooth.SERIAL_PORT_CLASS],
                                     profiles=[bluetooth.SERIAL_PORT_PROFILE])
 
