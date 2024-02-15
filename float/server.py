@@ -23,11 +23,11 @@ with open(fname, "x") as f:
 log_buffer = []
 class BluetoothServer:
 
-    def __init__(self, port, uuid):
+    def __init__(self, command_port, command_uuid, sensor_port, sensor_uuid):
         self.port = port
         self.command_sock = bluetooth.BluetoothSocket(bluetooth.RFCOMM)
         self.command_sock.bind(("", self.port))
-        self.server_sock.listen(1)
+        self.command_sock.listen(1)
 
         self.port = self.server_sock.getsockname()[1]
 
