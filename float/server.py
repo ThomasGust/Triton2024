@@ -138,7 +138,7 @@ class BluetoothServer:
     
     def handle_ping(self):
         ping_sock, ping_info = self.ping_sock.accept()
-        ping_sock.settimeout(5)
+        ping_sock.settimeout(1)
         print("Accepted PING connection from", ping_info)
         while self.on:
             try:
@@ -153,7 +153,7 @@ class BluetoothServer:
                 if self.connectable == True:
                     print("Server is not responding")
                 self.connectable = False
-            time.sleep(1)
+        
         ping_sock.close()
 
 if __name__ == "__main__":
