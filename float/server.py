@@ -125,9 +125,6 @@ class BluetoothServer:
         print("s: stop")
         print("d: out")
         print("a: in")
-        print("x: restart script")
-        print("q: query sensor thread")
-        print("r: start sensor thread")
 
         #I will add the key for profiling here later.
         while True:
