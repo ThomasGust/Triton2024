@@ -140,6 +140,7 @@ class BluetoothServer:
         ping_sock, ping_info = self.ping_sock.accept()
         ping_sock.setsockopt(bluetooth.SOL_SOCKET, bluetooth.SO_SNDBUF, 64)
         ping_sock.settimeout(1)
+        
         print("Accepted PING connection from", ping_info)
         while self.on:
             try:
