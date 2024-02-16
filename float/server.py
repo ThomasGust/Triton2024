@@ -145,7 +145,7 @@ class BluetoothServer:
         while self.on:
             try:
                 data = ping_sock.recv(64).decode("utf-8")
-                print(data)
+
                 if self.connectable == False:
                     print("Server is responding")
     
