@@ -155,6 +155,7 @@ class BluetoothServer:
                 if self.connectable == True:
                     print("Server is not responding")
                 self.connectable = False
+            time.sleep(0.1)
         
         ping_sock.close()
 
