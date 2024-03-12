@@ -98,20 +98,26 @@ class BluetoothServer:
         # Our client should spit out log data every 5 seconds while it is connected
         sensor_sock, sensor_info = self.sensor_sock.accept()
         print("Accepted SENSOR connection from", sensor_info)
+
         while self.on:
+            #print(self.connectable)
             if self.connectable:
                 lines = []
                 done = False
                 while not done:
+                    #print("LOOKING FOR DATA")
                     data = sensor_sock.recv(4096)
+                    #print(data)
                     if data == b'':
                         time.sleep(2)
+                    
                     else:
                         deserialized = pickle.loads(data)
                         if deserialized == "EOF":
                             done = True
                         else:
                             lines.append(deserialized)
+                #print(lines)
                 
                 # Now we will save the lines to our log file
                 with open(fname, "wb") as f:
@@ -135,24 +141,29 @@ class BluetoothServer:
     
     def handle_ping(self):
         ping_sock, ping_info = self.ping_sock.accept()
-        ping_sock.setsockopt(bluetooth.SOL_SOCKET, bluetooth.SO_SNDBUF, 64)
-        ping_sock.settimeout(1)
+        #ping_sock.setsockopt(bluetooth.SOL_SOCKET, bluetooth.SO_SNDBUF, 64)
+
+        ping_sock.settimeout(5)
 
         print("Accepted PING connection from", ping_info)
         while self.on:
             try:
+                #print(self.connectable)
                 data = ping_sock.recv(64).decode("utf-8")
-
+                #print(data)
+                #print(self.connectable)
                 if self.connectable == False:
                     print("Server is responding")
-    
+
                 self.connectable = True
                 ping_sock.send("pong")
-            except:
+                time.sleep(1)
+            except Exception as e:
+                #print(e)
                 if self.connectable == True:
                     print("Server is not responding")
-                self.connectable = False
-            time.sleep(0.1)
+                self.connectable = True
+            time.sleep(0.3)
         
         ping_sock.close()
 
