@@ -32,8 +32,9 @@ while True:
     frame_red = np.expand_dims(frame_red, -1)
     frame_red = cv2.resize(frame_red, (frame_red.shape[0]*block_size, frame_red.shape[1]*block_size))
     
-    red_threshold = 0.95*256
-    
+    red_threshold = 0.55
+
+    ret, frame_red = cv2.threshold(frame_red, red_threshold, 255, cv2.THRESH_BINARY)
     cv2.imshow("frame", frame_red)
     if cv2.waitKey(1) & 0xff ==ord('q'):
         break
