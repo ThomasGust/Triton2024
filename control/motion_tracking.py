@@ -1,5 +1,6 @@
 import cv2
-
+import numpy as np
+import torch
 
 width=1920
 height= 1080
@@ -19,9 +20,15 @@ satHigh=250
 valLow=10
 valHigh=250
 
+p = torch.nn.MaxPool2d(2, 2)
 while True:
     ignore,  frame = cam.read()
-    print(frame.shape)
-    cv2.imshow("frame", frame)
+
+    frame_red = frame[:, :, 2]
+    frame_red = np.expand_dims(frame_red, -1)
+    
+    frame_red = p(frame_red)
+    print(frame_red.shape)
+    cv2.imshow("frame", frame_red)
     if cv2.waitKey(1) & 0xff ==ord('q'):
         break
