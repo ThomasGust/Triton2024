@@ -25,16 +25,14 @@ block_size = 16
 while True:
     ignore,  frame = cam.read()
 
-    frame_red = np.divide(frame[:, :, 2]^3, np.sum(frame, axis=-1))
-    print(frame_red.shape)
+    frame_red = np.divide(frame[:, :, 2]^5, np.sum((frame[:, :, 0]^2, frame[:, :, 1]^2), axis=-1)^2)
 
     frame_red = skimage.measure.block_reduce(frame_red,block_size,np.max)
     frame_red = np.expand_dims(frame_red, -1)
     frame_red = cv2.resize(frame_red, (frame_red.shape[0]*block_size, frame_red.shape[1]*block_size))
     
-    red_threshold = 0.55
+    red_threshold = 0.5
 
-    ret, frame_red = cv2.threshold(frame_red, red_threshold, 255, cv2.THRESH_BINARY)
-    cv2.imshow("frame", frame_red)
+    cv2.imshow("frame", frame_red*frame_red*frame_red*1.5)
     if cv2.waitKey(1) & 0xff ==ord('q'):
         break
