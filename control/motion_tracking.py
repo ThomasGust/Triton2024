@@ -25,9 +25,9 @@ while True:
     ignore,  frame = cam.read()
 
     frame_red = frame[:, :, 2]
-    frame_red = np.expand_dims(frame_red, -1)
-    
-    frame_red = p(frame_red)
+    frame_red = np.expand_dims(np.expand_dims(frame_red, 0), -1)
+    frame_red = p(torch.tensor(frame_red))
+
     print(frame_red.shape)
     cv2.imshow("frame", frame_red)
     if cv2.waitKey(1) & 0xff ==ord('q'):
