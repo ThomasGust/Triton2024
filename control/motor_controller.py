@@ -31,9 +31,19 @@ master.wait_heartbeat()
 print("BEAT")
 # Wait a heartbeat before sending commands
 #master.wait_heartbeat()
-
+while True:
+    master.mav.manual_control_send(
+        master.target_system,
+        500,
+        -500,
+        250,
+        500,
+        0)
+    time.sleep(1)
+"""
 while True:
 # command servo_1 to go from min to max in steps of 50us, over 2 seconds
     for us in range(1100, 1900, 50):
         set_servo_pwm(1, us)
         time.sleep(0.125)
+"""

@@ -40,7 +40,7 @@ void out(int wt){
 
 void float_profile(){
   all_in();
-  stall(15*1000);
+  stall(10*1000);
   all_out();
 }
 //6pin1, 73

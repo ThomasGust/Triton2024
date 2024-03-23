@@ -126,6 +126,7 @@ class BluetoothServer:
     def handle_command(self):
         client_sock, client_info = self.command_sock.accept()
         print("Accepted COMMAND connection from", client_info)
+
         print("o: stutter out")
         print("i: stutter in")
         print("s: stop")
@@ -168,6 +169,7 @@ class BluetoothServer:
         ping_sock.close()
 
 if __name__ == "__main__":
+    """
     command_id = "71c94c53-28c7-43a3-b05f-0ffd96fcd2e3"
     sensor_id = "34267a21-7847-4cda-95fe-8e96dcd6b2b6"
     ping_id = "ca9237cc-7d72-46da-9e8f-33d3e29643aa"
@@ -178,3 +180,10 @@ if __name__ == "__main__":
 
     server = BluetoothServer(command_port, command_id, sensor_port, sensor_id, ping_port, ping_id)
     server.handle_client()
+    """
+    
+    cid = generate_uuid()
+    dg = generate_uuid()
+
+    print(cid)
+    print(dg)
