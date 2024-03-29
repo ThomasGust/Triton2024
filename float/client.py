@@ -1,3 +1,5 @@
+#SLIGHTLY DIFFERENT FROM CURRENTLY DEPLOYED CLIENT
+
 import bluetooth
 import json
 import threading
@@ -55,7 +57,7 @@ class PressureSensor:
         
         self.sensor = ms5837.MS5837(model=ms5837.MODEL_30BA, bus=1)
         self.sensor.init()
-        self.sensor.set_fluid_density(self.fluid_density)
+        self.sensor.setFluidDensity(self.fluid_density)
 
         self.dive_count = 0
         
@@ -144,7 +146,7 @@ class DataSenderThread(threading.Thread):
         threading.Thread.__init__(self)
         self.port = port
         kill_process_on_port(self.port)
-        
+
         self.sock = bluetooth.BluetoothSocket(bluetooth.RFCOMM)
         self.sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 
