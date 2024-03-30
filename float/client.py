@@ -15,6 +15,8 @@ st = time.time()
 COMPANY_NUMBER = "TRITON007"
 dive_number = 0
 
+is_profiling = False
+
 def kill_process_on_port(port):
     try:
         if sys.platform.startswith('linux') or sys.platform == 'darwin':
@@ -82,28 +84,46 @@ class CommandListenerThread(threading.Thread):
         self.port = port
         kill_process_on_port(self.port)
 
+        self.serial = FloatSerial()
+
+    def connect(self):
+        
         self.sock = bluetooth.BluetoothSocket(bluetooth.RFCOMM)
-        self.sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 
         self.sock.bind(("", self.port))
         self.sock.listen(1)
-
-        self.serial = FloatSerial()
+    
+    def shutdown(self):
+        print("Attempting Command Socket Shutdown")
+        self.sock.shutdown(socket.SHUT_RDWR)
+        self.sock.close()
+        print("Completed Command Socket Shutdown")
 
     def run(self):
-        server_sock, server_info = self.sock.accept()
-        print(f"Accepted command connection from {server_info}")
-        try:
-            while True:
-                data = server_sock.recv(1024)
-                command = json.loads(data.decode("utf-8"))
-                print(f"Received command: {command}")
-                # Execute command here
-                self.serial.write_serial(command)
-                if str(list(command)[0])=="p":
-                    dive_number += 1
-        except:
-            server_sock.close()
+        global is_profiling
+
+        while True:
+            self.connect()
+            server_sock, server_info = self.sock.accept()
+            print(f"Accepted command connection from {server_info}")
+            failed = False
+            while not failed:
+
+                try:
+                    data = server_sock.recv(1024)
+                    command = data.decode("utf-8")
+                    print(f"Received command: {command}")
+                    if str(list(command)[0])=="p":
+                        self.serial.write_serial("i")
+                        time.sleep(40)
+                        self.serial.write_serial("s")
+                        time.sleep(10)
+                        self.serial.write_serial("o")
+                        time.sleep(40)
+                except bluetooth.BluetoothError:
+                    self.shutdown()
+                    time.sleep(3)
+                    failed = True
         
 class BlankSensor:
 
@@ -147,33 +167,41 @@ class DataSenderThread(threading.Thread):
         self.port = port
         kill_process_on_port(self.port)
 
-        self.sock = bluetooth.BluetoothSocket(bluetooth.RFCOMM)
-        self.sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-
-        self.sock.bind(("", self.port))
-        self.sock.listen(1)
-
         self.gatherer = gatherer
 
     def run(self):
-        server_sock, server_info = self.sock.accept()
-        print(f"Accepted data connection from {server_info}")
-        try:
-            while True:
-                # Simulate gathering data and sending it back
-                data = self.gatherer.packets
-                self.send_data_in_chunks(server_sock, data)
-                #server_sock.send(json.dumps(gathered_data))
-                time.sleep(5)  # Adjust based on your needs
-        except:
-            server_sock.close()
+        while True:
+            self.connect()
+            server_sock, server_info = self.sock.accept()
+            print(f"Accepted data connection from {server_info}")
+            failed = False
+            while not failed:
+                try:
+                    # Simulate gathering data and sending it back
+                    data = self.gatherer.packets
+                    self.send_data_in_chunks(server_sock, data)
+                    #server_sock.send(json.dumps(gathered_data))
+                    time.sleep(5)  # Adjust based on your needs
+                except bluetooth.BluetoothError:
+                    self.shutdown()
+                    time.sleep(3)
+                    failed = True
     
     @staticmethod
     def send_data_in_chunks(sock, data):
-        encoded_data = data.encode('utf-8')
-        sock.send(str(len(encoded_data)).encode('utf-8') + b'\n')
+        sock.sendall(data.encode('utf-8')+"_EODT_:!:_EODT_".encode("utf-8"))
+    
+    def connect(self):
+        self.sock = bluetooth.BluetoothSocket(bluetooth.RFCOMM)
 
-        sock.sendall(encoded_data)
+        self.sock.bind(("", self.port))
+        self.sock.listen(1)
+    
+    def shutdown(self):
+        print("Attempting Data Socket Shutdown")
+        self.sock.shutdown(socket.SHUT_RDWR)
+        self.sock.close()
+        print("Completed Data Socket Shutdown")
 
 class Float:
 
