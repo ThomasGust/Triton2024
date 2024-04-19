@@ -142,7 +142,7 @@ class DataThread(threading.Thread):
                 try:
                     data = self.recvall()
                 except TimeoutError or OSError:
-                    pass
+                    data = None
                 #print(data)
                 print("DATA RECEIVED")
                 if data == None:
