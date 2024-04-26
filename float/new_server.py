@@ -5,10 +5,7 @@ import time
 import sys
 import subprocess
 import pickle as pkl
-import socket
-import os
-import errno
-import signal
+import json
 import functools
 
 class TimeoutError(Exception):
@@ -42,6 +39,7 @@ def timeout_decorator(timeout):
 
 target_name = "raspberrypi"
 target_address = "B8:27:EB:A2:69:06"
+#target_address = "00:1A:7D:DA:71:13"
 is_profiling = False
 
 
@@ -128,7 +126,7 @@ class DataThread(threading.Thread):
     
     def shutdown(self):
         print("Attempting Data Socket Shutdown")
-        #self.sock.shutdown(socket.SHUT_RDWR)
+
         self.sock.close()
         print("Completed DataSocket Shutdown")
 
@@ -143,12 +141,13 @@ class DataThread(threading.Thread):
                     data = self.recvall()
                 except TimeoutError or OSError:
                     data = None
-                #print(data)
                 print("DATA RECEIVED")
                 if data == None:
-                    data = pkl.load(open('log.pkl', "rb"))
-                pkl.dump(data, open("log.pkl", "wb"))
-            #self.shutdown()
+                    data = json.load(open("log.json"))
+                
+                j = json.dumps(data, indent=4)
+                with open("log.json", "w") as f:
+                    f.write(j)
     
     @timeout_decorator(10)
     def recvall(self):

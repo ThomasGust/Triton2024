@@ -1,0 +1,754 @@
+[
+    {
+        "company_number": "TRITON007",
+        "float_time": 0.06118297576904297,
+        "pressure": 1017.0984924813208,
+        "temperature": 22.057442331155762,
+        "depth": 0.042087605558620574,
+        "dive": 0
+    },
+    {
+        "company_number": "TRITON007",
+        "float_time": 5.110918283462524,
+        "pressure": 1014.9400297324988,
+        "temperature": 22.097498913370075,
+        "depth": 0.01992225349333601,
+        "dive": 0
+    },
+    {
+        "company_number": "TRITON007",
+        "float_time": 10.160607814788818,
+        "pressure": 1015.7188271766354,
+        "temperature": 22.084965127685575,
+        "depth": 0.02791975984189435,
+        "dive": 0
+    },
+    {
+        "company_number": "TRITON007",
+        "float_time": 15.210500955581665,
+        "pressure": 1015.612452126856,
+        "temperature": 22.078698218413045,
+        "depth": 0.02682738962118645,
+        "dive": 0
+    },
+    {
+        "company_number": "TRITON007",
+        "float_time": 20.259310722351074,
+        "pressure": 1015.2975800532819,
+        "temperature": 22.089293811199603,
+        "depth": 0.0235939539873736,
+        "dive": 0
+    },
+    {
+        "company_number": "TRITON007",
+        "float_time": 38.21003246307373,
+        "pressure": 1016.1594418409222,
+        "temperature": 22.072560513147618,
+        "depth": 0.03244445185447359,
+        "dive": 0
+    },
+    {
+        "company_number": "TRITON007",
+        "float_time": 43.25972127914429,
+        "pressure": 1015.5548819152027,
+        "temperature": 22.079925758205356,
+        "depth": 0.026236198501271978,
+        "dive": 0
+    },
+    {
+        "company_number": "TRITON007",
+        "float_time": 48.3091344833374,
+        "pressure": 1015.3592450056924,
+        "temperature": 22.08399601872021,
+        "depth": 0.024227194186220536,
+        "dive": 0
+    },
+    {
+        "company_number": "TRITON007",
+        "float_time": 53.358736991882324,
+        "pressure": 1014.8713907723723,
+        "temperature": 22.08173476344906,
+        "depth": 0.019217396892298816,
+        "dive": 0
+    },
+    {
+        "company_number": "TRITON007",
+        "float_time": 58.40820264816284,
+        "pressure": 1016.4798213439732,
+        "temperature": 22.062061782416276,
+        "depth": 0.035734443531883965,
+        "dive": 0
+    },
+    {
+        "company_number": "TRITON007",
+        "float_time": 63.45650577545166,
+        "pressure": 1017.1620778887212,
+        "temperature": 22.05582713700307,
+        "depth": 0.04274056699703933,
+        "dive": 0
+    },
+    {
+        "company_number": "TRITON007",
+        "float_time": 68.50615906715393,
+        "pressure": 1016.6412783615291,
+        "temperature": 22.06396770812513,
+        "depth": 0.03739245298305077,
+        "dive": 0
+    },
+    {
+        "company_number": "TRITON007",
+        "float_time": 73.55558919906616,
+        "pressure": 1016.2010820049909,
+        "temperature": 22.070363858183846,
+        "depth": 0.03287205659175336,
+        "dive": 0
+    },
+    {
+        "company_number": "TRITON007",
+        "float_time": 78.60495233535767,
+        "pressure": 1015.482799567221,
+        "temperature": 22.073174284146955,
+        "depth": 0.0254959815938562,
+        "dive": 0
+    },
+    {
+        "company_number": "TRITON007",
+        "float_time": 83.65451860427856,
+        "pressure": 1015.1648285134579,
+        "temperature": 22.08125020856256,
+        "depth": 0.02223072239164082,
+        "dive": 0
+    },
+    {
+        "company_number": "TRITON007",
+        "float_time": 88.70413541793823,
+        "pressure": 1013.4391573202068,
+        "temperature": 22.11090484698754,
+        "depth": 0.004509726479988754,
+        "dive": 0
+    },
+    {
+        "company_number": "TRITON007",
+        "float_time": 93.75314354896545,
+        "pressure": 1012.8526131731894,
+        "temperature": 22.10593012084355,
+        "depth": -0.001513522022941401,
+        "dive": 0
+    },
+    {
+        "company_number": "TRITON007",
+        "float_time": 98.80265736579895,
+        "pressure": 1014.9909572555655,
+        "temperature": 22.07488638164243,
+        "depth": 0.020445230542257047,
+        "dive": 0
+    },
+    {
+        "company_number": "TRITON007",
+        "float_time": 103.85227560997009,
+        "pressure": 1013.887809846495,
+        "temperature": 22.08502973494062,
+        "depth": 0.009116959662762585,
+        "dive": 0
+    },
+    {
+        "company_number": "TRITON007",
+        "float_time": 108.90190243721008,
+        "pressure": 1014.2846762147237,
+        "temperature": 22.082542354781037,
+        "depth": 0.013192398434853002,
+        "dive": 0
+    },
+    {
+        "company_number": "TRITON007",
+        "float_time": 113.95113134384155,
+        "pressure": 1014.3040194792353,
+        "temperature": 22.08011958023941,
+        "depth": 0.013391035297233182,
+        "dive": 0
+    },
+    {
+        "company_number": "TRITON007",
+        "float_time": 119.00091218948364,
+        "pressure": 1014.3673244511534,
+        "temperature": 22.07879512946456,
+        "depth": 0.01404111693093926,
+        "dive": 0
+    },
+    {
+        "company_number": "TRITON007",
+        "float_time": 124.05062174797058,
+        "pressure": 1013.9432432700502,
+        "temperature": 22.07475716676563,
+        "depth": 0.009686208008584678,
+        "dive": 0
+    },
+    {
+        "company_number": "TRITON007",
+        "float_time": 129.09904074668884,
+        "pressure": 1014.2112134009396,
+        "temperature": 22.071591400829494,
+        "depth": 0.01243800546137202,
+        "dive": 0
+    },
+    {
+        "company_number": "TRITON007",
+        "float_time": 134.14836740493774,
+        "pressure": 1014.2844818647194,
+        "temperature": 22.071559097081046,
+        "depth": 0.013190402645825914,
+        "dive": 0
+    },
+    {
+        "company_number": "TRITON007",
+        "float_time": 139.19814348220825,
+        "pressure": 1014.1969819528691,
+        "temperature": 22.074531040720032,
+        "depth": 0.012291862074346467,
+        "dive": 0
+    },
+    {
+        "company_number": "TRITON007",
+        "float_time": 144.24694657325745,
+        "pressure": 1014.3746834701044,
+        "temperature": 22.071494489583273,
+        "depth": 0.014116687030998694,
+        "dive": 0
+    },
+    {
+        "company_number": "TRITON007",
+        "float_time": 149.29641389846802,
+        "pressure": 1014.4512404013221,
+        "temperature": 22.06819950565332,
+        "depth": 0.014902853637026987,
+        "dive": 0
+    },
+    {
+        "company_number": "TRITON007",
+        "float_time": 154.34594535827637,
+        "pressure": 1014.3785261132755,
+        "temperature": 22.067682645154274,
+        "depth": 0.014156147308362666,
+        "dive": 0
+    },
+    {
+        "company_number": "TRITON007",
+        "float_time": 159.39583349227905,
+        "pressure": 1014.2243722255283,
+        "temperature": 22.064129227206433,
+        "depth": 0.012573134029115076,
+        "dive": 0
+    },
+    {
+        "company_number": "TRITON007",
+        "float_time": 164.445410490036,
+        "pressure": 1014.4924974617606,
+        "temperature": 22.060801932662727,
+        "depth": 0.01532652426571742,
+        "dive": 0
+    },
+    {
+        "company_number": "TRITON007",
+        "float_time": 169.495099067688,
+        "pressure": 1014.2113816432072,
+        "temperature": 22.060252767247004,
+        "depth": 0.012439733148865111,
+        "dive": 0
+    },
+    {
+        "company_number": "TRITON007",
+        "float_time": 174.5447473526001,
+        "pressure": 1014.6950041996403,
+        "temperature": 22.055504098085223,
+        "depth": 0.017406075160511916,
+        "dive": 0
+    },
+    {
+        "company_number": "TRITON007",
+        "float_time": 179.59428715705872,
+        "pressure": 1014.4798305506644,
+        "temperature": 22.056602430287167,
+        "depth": 0.015196447179984696,
+        "dive": 0
+    },
+    {
+        "company_number": "TRITON007",
+        "float_time": 184.6436882019043,
+        "pressure": 1014.518547674999,
+        "temperature": 22.05172454058411,
+        "depth": 0.015594035089389809,
+        "dive": 0
+    },
+    {
+        "company_number": "TRITON007",
+        "float_time": 189.69322872161865,
+        "pressure": 1014.6345666716777,
+        "temperature": 22.048397234529258,
+        "depth": 0.016785439439105442,
+        "dive": 0
+    },
+    {
+        "company_number": "TRITON007",
+        "float_time": 194.74283361434937,
+        "pressure": 1014.7375274079357,
+        "temperature": 22.04684664424509,
+        "depth": 0.017842747919089144,
+        "dive": 0
+    },
+    {
+        "company_number": "TRITON007",
+        "float_time": 199.79287004470825,
+        "pressure": 1014.3140622850711,
+        "temperature": 22.042227173382273,
+        "depth": 0.01349416532678598,
+        "dive": 0
+    },
+    {
+        "company_number": "TRITON007",
+        "float_time": 204.84255194664001,
+        "pressure": 1014.6924607355002,
+        "temperature": 22.041258052865597,
+        "depth": 0.017379956211662752,
+        "dive": 0
+    },
+    {
+        "company_number": "TRITON007",
+        "float_time": 209.8922016620636,
+        "pressure": 1014.7251852980874,
+        "temperature": 22.042324085419533,
+        "depth": 0.017716006232132812,
+        "dive": 0
+    },
+    {
+        "company_number": "TRITON007",
+        "float_time": 214.94182133674622,
+        "pressure": 1015.2044199811004,
+        "temperature": 22.036315534156167,
+        "depth": 0.022637288972210866,
+        "dive": 0
+    },
+    {
+        "company_number": "TRITON007",
+        "float_time": 219.99158024787903,
+        "pressure": 1014.6534847834643,
+        "temperature": 22.03521719573997,
+        "depth": 0.016979710388829526,
+        "dive": 0
+    },
+    {
+        "company_number": "TRITON007",
+        "float_time": 225.0412335395813,
+        "pressure": 1014.7588195716526,
+        "temperature": 22.031308400411945,
+        "depth": 0.01806139811598204,
+        "dive": 0
+    },
+    {
+        "company_number": "TRITON007",
+        "float_time": 230.0905146598816,
+        "pressure": 1014.9778565854388,
+        "temperature": 22.031954482578293,
+        "depth": 0.020310699165327493,
+        "dive": 0
+    },
+    {
+        "company_number": "TRITON007",
+        "float_time": 235.13984394073486,
+        "pressure": 1014.2150895264698,
+        "temperature": 22.02865946231279,
+        "depth": 0.012477809570603708,
+        "dive": 0
+    },
+    {
+        "company_number": "TRITON007",
+        "float_time": 240.18461394309998,
+        "pressure": 1014.6205995853845,
+        "temperature": 22.028724070582392,
+        "depth": 0.016642010795184917,
+        "dive": 0
+    },
+    {
+        "company_number": "TRITON007",
+        "float_time": 245.2335021495819,
+        "pressure": 1014.9711467600049,
+        "temperature": 22.027431904969127,
+        "depth": 0.02024179566300032,
+        "dive": 0
+    },
+    {
+        "company_number": "TRITON007",
+        "float_time": 250.28308057785034,
+        "pressure": 1014.0508849566104,
+        "temperature": 22.029499369726835,
+        "depth": 0.010791585379961936,
+        "dive": 0
+    },
+    {
+        "company_number": "TRITON007",
+        "float_time": 255.3324294090271,
+        "pressure": 1014.5779135781544,
+        "temperature": 22.026365867987625,
+        "depth": 0.01620366624694924,
+        "dive": 0
+    },
+    {
+        "company_number": "TRITON007",
+        "float_time": 260.3820290565491,
+        "pressure": 1014.3373911165312,
+        "temperature": 22.02468605149479,
+        "depth": 0.013733730157296427,
+        "dive": 0
+    },
+    {
+        "company_number": "TRITON007",
+        "float_time": 265.43140935897827,
+        "pressure": 1014.3452077975875,
+        "temperature": 22.02252167139188,
+        "depth": 0.013814000010315255,
+        "dive": 0
+    },
+    {
+        "company_number": "TRITON007",
+        "float_time": 270.4810109138489,
+        "pressure": 1014.9886941578239,
+        "temperature": 22.02119719934126,
+        "depth": 0.020421990688696257,
+        "dive": 0
+    },
+    {
+        "company_number": "TRITON007",
+        "float_time": 275.5304594039917,
+        "pressure": 1014.5107126699819,
+        "temperature": 22.02038959419224,
+        "depth": 0.015513577066784428,
+        "dive": 0
+    },
+    {
+        "company_number": "TRITON007",
+        "float_time": 280.5800211429596,
+        "pressure": 1014.2169549691055,
+        "temperature": 22.021229503543438,
+        "depth": 0.012496965885809242,
+        "dive": 0
+    },
+    {
+        "company_number": "TRITON007",
+        "float_time": 285.62936210632324,
+        "pressure": 1014.0462819118198,
+        "temperature": 22.01732069296704,
+        "depth": 0.010744316503808837,
+        "dive": 0
+    },
+    {
+        "company_number": "TRITON007",
+        "float_time": 290.67900228500366,
+        "pressure": 1014.5745676596474,
+        "temperature": 22.01292731400987,
+        "depth": 0.01616930685773619,
+        "dive": 0
+    },
+    {
+        "company_number": "TRITON007",
+        "float_time": 295.7286193370819,
+        "pressure": 1014.4220647627692,
+        "temperature": 22.007758625991993,
+        "depth": 0.014603247678754422,
+        "dive": 0
+    },
+    {
+        "company_number": "TRITON007",
+        "float_time": 300.7782599925995,
+        "pressure": 1014.8634689473635,
+        "temperature": 22.005723453040556,
+        "depth": 0.019136047311252857,
+        "dive": 0
+    },
+    {
+        "company_number": "TRITON007",
+        "float_time": 305.82787704467773,
+        "pressure": 1014.7677130532393,
+        "temperature": 22.005723453040556,
+        "depth": 0.018152725682586163,
+        "dive": 0
+    },
+    {
+        "company_number": "TRITON007",
+        "float_time": 310.8774814605713,
+        "pressure": 1015.0115794715123,
+        "temperature": 22.00407593123382,
+        "depth": 0.020657001015051312,
+        "dive": 0
+    },
+    {
+        "company_number": "TRITON007",
+        "float_time": 315.927109003067,
+        "pressure": 1014.1719841528131,
+        "temperature": 22.004398974784998,
+        "depth": 0.01203515852947344,
+        "dive": 0
+    },
+    {
+        "company_number": "TRITON007",
+        "float_time": 320.9767065048218,
+        "pressure": 1014.7228469118156,
+        "temperature": 22.005529626984934,
+        "depth": 0.017691993237233625,
+        "dive": 0
+    },
+    {
+        "company_number": "TRITON007",
+        "float_time": 326.02626967430115,
+        "pressure": 1014.6884679473703,
+        "temperature": 22.000522450249992,
+        "depth": 0.017338954088893577,
+        "dive": 0
+    },
+    {
+        "company_number": "TRITON007",
+        "float_time": 331.0757999420166,
+        "pressure": 1014.9265691146662,
+        "temperature": 21.999004143664934,
+        "depth": 0.01978402579705596,
+        "dive": 0
+    },
+    {
+        "company_number": "TRITON007",
+        "float_time": 336.1255054473877,
+        "pressure": 1014.6235158752446,
+        "temperature": 21.997905793819665,
+        "depth": 0.01667195830829809,
+        "dive": 0
+    },
+    {
+        "company_number": "TRITON007",
+        "float_time": 341.1746599674225,
+        "pressure": 1014.7642983247293,
+        "temperature": 21.99793809823168,
+        "depth": 0.018117659680325086,
+        "dive": 0
+    },
+    {
+        "company_number": "TRITON007",
+        "float_time": 346.22429394721985,
+        "pressure": 1014.5923872863553,
+        "temperature": 22.000845494121315,
+        "depth": 0.01635229741426483,
+        "dive": 0
+    },
+    {
+        "company_number": "TRITON007",
+        "float_time": 351.273964881897,
+        "pressure": 1014.5158119579544,
+        "temperature": 21.99858418641088,
+        "depth": 0.015565941886726576,
+        "dive": 0
+    },
+    {
+        "company_number": "TRITON007",
+        "float_time": 356.32131719589233,
+        "pressure": 1014.7025314397499,
+        "temperature": 22.003332930955658,
+        "depth": 0.01748337273129507,
+        "dive": 0
+    },
+    {
+        "company_number": "TRITON007",
+        "float_time": 361.37107253074646,
+        "pressure": 1014.6237392355135,
+        "temperature": 22.003268322228543,
+        "depth": 0.01667425200505032,
+        "dive": 0
+    },
+    {
+        "company_number": "TRITON007",
+        "float_time": 366.42073488235474,
+        "pressure": 1014.999630425038,
+        "temperature": 22.004754322657682,
+        "depth": 0.020534295713748683,
+        "dive": 0
+    },
+    {
+        "company_number": "TRITON007",
+        "float_time": 371.47010564804077,
+        "pressure": 1014.4947035526915,
+        "temperature": 22.00834010376595,
+        "depth": 0.015349178713748543,
+        "dive": 0
+    },
+    {
+        "company_number": "TRITON007",
+        "float_time": 376.51973056793213,
+        "pressure": 1014.6778504927177,
+        "temperature": 22.0054650182974,
+        "depth": 0.01722992296452409,
+        "dive": 0
+    },
+    {
+        "company_number": "TRITON007",
+        "float_time": 381.5694303512573,
+        "pressure": 1014.9467221878876,
+        "temperature": 22.006951017816174,
+        "depth": 0.019990978621882132,
+        "dive": 0
+    },
+    {
+        "company_number": "TRITON007",
+        "float_time": 386.6191039085388,
+        "pressure": 1014.8040153224865,
+        "temperature": 22.00882466850555,
+        "depth": 0.018525515335348547,
+        "dive": 0
+    },
+    {
+        "company_number": "TRITON007",
+        "float_time": 391.66870737075806,
+        "pressure": 1014.5904885984725,
+        "temperature": 22.01389644218376,
+        "depth": 0.016332799702103603,
+        "dive": 0
+    },
+    {
+        "company_number": "TRITON007",
+        "float_time": 396.71821546554565,
+        "pressure": 1014.4453992419294,
+        "temperature": 22.018128298807277,
+        "depth": 0.014842870505754526,
+        "dive": 0
+    },
+    {
+        "company_number": "TRITON007",
+        "float_time": 401.7677776813507,
+        "pressure": 1014.3705811157445,
+        "temperature": 22.01412257205331,
+        "depth": 0.014074559767633128,
+        "dive": 0
+    },
+    {
+        "company_number": "TRITON007",
+        "float_time": 406.81731271743774,
+        "pressure": 1014.4057143239712,
+        "temperature": 22.012798096900223,
+        "depth": 0.014435344279644794,
+        "dive": 0
+    },
+    {
+        "company_number": "TRITON007",
+        "float_time": 411.8669972419739,
+        "pressure": 1014.5905863410968,
+        "temperature": 22.013799529378158,
+        "depth": 0.016333803425555234,
+        "dive": 0
+    },
+    {
+        "company_number": "TRITON007",
+        "float_time": 416.9166100025177,
+        "pressure": 1014.4161324625777,
+        "temperature": 22.013638008029666,
+        "depth": 0.014542328618477348,
+        "dive": 0
+    },
+    {
+        "company_number": "TRITON007",
+        "float_time": 421.9662342071533,
+        "pressure": 1014.9983305168396,
+        "temperature": 22.01722378025399,
+        "depth": 0.020520946897381032,
+        "dive": 0
+    },
+    {
+        "company_number": "TRITON007",
+        "float_time": 427.0158214569092,
+        "pressure": 1014.8842408964847,
+        "temperature": 22.013056531114852,
+        "depth": 0.019349355400820875,
+        "dive": 0
+    },
+    {
+        "company_number": "TRITON007",
+        "float_time": 432.06488585472107,
+        "pressure": 1014.6719213228295,
+        "temperature": 22.011344404095873,
+        "depth": 0.017169036049473153,
+        "dive": 0
+    },
+    {
+        "company_number": "TRITON007",
+        "float_time": 437.10993576049805,
+        "pressure": 1014.5428889749601,
+        "temperature": 22.010827535401187,
+        "depth": 0.015843997004951548,
+        "dive": 0
+    },
+    {
+        "company_number": "TRITON007",
+        "float_time": 442.15959072113037,
+        "pressure": 1014.236478317462,
+        "temperature": 22.00746788706965,
+        "depth": 0.012697452037378609,
+        "dive": 0
+    },
+    {
+        "company_number": "TRITON007",
+        "float_time": 447.2062840461731,
+        "pressure": 1014.6794143178267,
+        "temperature": 22.003914409447315,
+        "depth": 0.017245981955641435,
+        "dive": 0
+    },
+    {
+        "company_number": "TRITON007",
+        "float_time": 452.2559723854065,
+        "pressure": 1014.8862289172015,
+        "temperature": 21.9999086668143,
+        "depth": 0.019369770475913265,
+        "dive": 0
+    },
+    {
+        "company_number": "TRITON007",
+        "float_time": 457.30522775650024,
+        "pressure": 1013.6056792417687,
+        "temperature": 22.018548253772316,
+        "depth": 0.0062197476605809435,
+        "dive": 0
+    },
+    {
+        "company_number": "TRITON007",
+        "float_time": 462.3545036315918,
+        "pressure": 1013.8357332732733,
+        "temperature": 22.025009093189148,
+        "depth": 0.008582182965577174,
+        "dive": 0
+    },
+    {
+        "company_number": "TRITON007",
+        "float_time": 467.4039041996002,
+        "pressure": 1014.1403034739924,
+        "temperature": 22.024621443152427,
+        "depth": 0.01170982819884285,
+        "dive": 0
+    },
+    {
+        "company_number": "TRITON007",
+        "float_time": 472.45314049720764,
+        "pressure": 1013.8671165987092,
+        "temperature": 22.02739960082283,
+        "depth": 0.008904459760786526,
+        "dive": 0
+    },
+    {
+        "company_number": "TRITON007",
+        "float_time": 477.5028610229492,
+        "pressure": 1014.1146823633899,
+        "temperature": 22.022101716892212,
+        "depth": 0.011446723849639576,
+        "dive": 0
+    },
+    {
+        "company_number": "TRITON007",
+        "float_time": 482.5513391494751,
+        "pressure": 1014.0693351636437,
+        "temperature": 22.01680382513383,
+        "depth": 0.010981051394510444,
+        "dive": 0
+    }
+]

@@ -14,6 +14,7 @@ st = time.time()
 
 COMPANY_NUMBER = "TRITON007"
 dive_number = 0
+depth = 0.0
 
 is_profiling = False
 
@@ -66,14 +67,17 @@ class PressureSensor:
         self.packets = []
 
     def read(self):
+        global depth
         self.sensor.read()
         float_time = time.time()-self.start_time()
         self.dive_count = dive_number
+
+        depth = self.sensor.depth()
         packet = {"company_number":COMPANY_NUMBER,
                   "float_time":float_time,
                   "pressure":self.sensor.pressure(),
                   "temperature":self.sensor.temperature(), 
-                  "depth":self.sensor.depth(),
+                  "depth":depth,
                   "dive":self.dive_count}
         self.packets.append(packet)
         return packet
@@ -101,6 +105,7 @@ class CommandListenerThread(threading.Thread):
 
     def run(self):
         global is_profiling
+        global dive_number
 
         while True:
             self.connect()
@@ -113,13 +118,24 @@ class CommandListenerThread(threading.Thread):
                     data = server_sock.recv(1024)
                     command = data.decode("utf-8")
                     print(f"Received command: {command}")
-                    if str(list(command)[0])=="p":
-                        self.serial.write_serial("i")
-                        time.sleep(40)
+                    command = str(list(command)[0])
+
+                    if command == "p":
+                        dive_number += 1
+
+                        cycle_counter = 0
+                        while depth <= 1.8 or cycle_counter <=5:
+                            print(depth)
+                            time.sleep(3)
+                            self.serial.write_serial("i")
+                            cycle_counter += 1
+    
                         self.serial.write_serial("s")
                         time.sleep(10)
+
                         self.serial.write_serial("o")
-                        time.sleep(40)
+                        time.sleep(20)
+
                 except bluetooth.BluetoothError:
                     self.shutdown()
                     time.sleep(3)
@@ -177,11 +193,10 @@ class DataSenderThread(threading.Thread):
             failed = False
             while not failed:
                 try:
-                    # Simulate gathering data and sending it back
                     data = self.gatherer.packets
                     self.send_data_in_chunks(server_sock, data)
-                    #server_sock.send(json.dumps(gathered_data))
-                    time.sleep(5)  # Adjust based on your needs
+
+                    time.sleep(5)
                 except bluetooth.BluetoothError:
                     self.shutdown()
                     time.sleep(3)
