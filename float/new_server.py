@@ -94,54 +94,80 @@ class CommandThread(threading.Thread):
         while True:
             self.connect()
             while True:
+                """c: Dumb, time based profile
+                   p: Configureable depth and velocity based profile
+                   y: Command, wait chain
+                """
                 # Example command to send
-                command = input("Command: ")
+                usr = input("Command, Params: ")
+                usr = usr.split(",")
+
+                command, params = usr[0], usr[1]
+                params = params.replace(" ", "")
+                params = json.load(open(params, "r"))
+
+
                 if command == "":
                     command = "s"
-                self.sock.send(json.dumps({"command": command}))
+
+                self.sock.send(json.dumps({"command": command, "params":params}))
+
                 if command == "k":
                     sys.exit()
-                if command == "p":
-                    time.sleep(90)
                 else:
                     time.sleep(1)
 
 class DataThread(threading.Thread):
+    """
+    A class representing a thread for handling data communication.
+
+    Args:
+        port (int): The port number to connect to.
+
+    Attributes:
+        port (int): The port number to connect to.
+        sock (bluetooth.BluetoothSocket): The Bluetooth socket for data communication.
+
+    Methods:
+        connect(): Connects to the target address on the specified port.
+        shutdown(): Shuts down the data socket.
+        run(): The main execution logic of the thread.
+        recvall(): Receives data from the socket until a specific end marker is found.
+    """
+
     def __init__(self, port):
         threading.Thread.__init__(self)
         self.port = port
-        #kill_process_on_port(self.port)
-
-        #self.sock.bind(("", self.port))
-        #self.sock.listen(1)
 
     def connect(self):
+        """
+        Connects to the target address on the specified port.
+        """
         print("BEGINNING BSOCKET CREATION FOR data")
         self.sock = bluetooth.BluetoothSocket(bluetooth.RFCOMM)
         self.sock.settimeout(9999)
-        #self.sock.settimeout(999999)
-
         self.sock.connect((target_address, self.port))
         print("FINISHED SOCKT CREATION FOR DATA")
     
     def shutdown(self):
+        """
+        Shuts down the data socket.
+        """
         print("Attempting Data Socket Shutdown")
-
         self.sock.close()
         print("Completed DataSocket Shutdown")
 
     def run(self):
+        """
+        The main execution logic of the thread.
+        """
         while True:
-
             self.connect()
             while not is_profiling:
-                print(is_profiling)
-                print("WAITING FOR DATA")
                 try:
                     data = self.recvall()
-                except TimeoutError or OSError:
+                except TimeoutError or OSError as e:
                     data = None
-                print("DATA RECEIVED")
                 if data == None:
                     data = json.load(open("log.json"))
                 
@@ -151,10 +177,14 @@ class DataThread(threading.Thread):
     
     @timeout_decorator(10)
     def recvall(self):
-        #If there is a cutoff in the middle of the transmission, we will need to kill this thing
+        """
+        Receives data from the socket until a specific end marker is found.
+
+        Returns:
+            dict: The received data as a dictionary.
+        """
         finished = False
         full_data = b''
-
         end = "_EODT_:!:_EODT_"
         byte_end = end.encode('utf-8')
         while not finished:
@@ -164,7 +194,6 @@ class DataThread(threading.Thread):
         
         deserialized = str(full_data, encoding='utf-8')
         j = deserialized.split(end)[0]
-
         j = json.loads(j)
 
         return j
