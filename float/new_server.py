@@ -7,6 +7,7 @@ import subprocess
 import pickle as pkl
 import json
 import functools
+import os
 
 class TimeoutError(Exception):
     pass
@@ -139,6 +140,10 @@ class DataThread(threading.Thread):
         threading.Thread.__init__(self)
         self.port = port
 
+        current_logs = os.listdir("float\\logs")
+        num_logs = len(current_logs)
+        self.log_name = f"float\\logs\\log_{num_logs}.json"
+
     def connect(self):
         """
         Connects to the target address on the specified port.
@@ -169,10 +174,10 @@ class DataThread(threading.Thread):
                 except TimeoutError or OSError as e:
                     data = None
                 if data == None:
-                    data = json.load(open("log.json"))
+                    data = json.load(open(self.log_name, "r"))
                 
                 j = json.dumps(data, indent=4)
-                with open("log.json", "w") as f:
+                with open(self.log_name, "w") as f:
                     f.write(j)
     
     @timeout_decorator(10)

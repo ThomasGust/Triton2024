@@ -1,0 +1,65 @@
+[
+    {
+        "company_number": "RG03",
+        "float_time": 2.396559953689575,
+        "pressure": 1041.3573243271821,
+        "temperature": 25.497251864652497,
+        "depth": 0.29120265229709014,
+        "dive": 0,
+        "lc": null
+    },
+    {
+        "company_number": "RG03",
+        "float_time": 5.12177848815918,
+        "pressure": 1041.3051912233846,
+        "temperature": 25.511193717466085,
+        "depth": 0.2906672950848524,
+        "dive": 0,
+        "lc": null
+    },
+    {
+        "company_number": "RG03",
+        "float_time": 7.844604015350342,
+        "pressure": 1041.2203444243555,
+        "temperature": 25.523618702557723,
+        "depth": 0.2897959994495131,
+        "dive": 0,
+        "lc": null
+    },
+    {
+        "company_number": "RG03",
+        "float_time": 10.566363096237183,
+        "pressure": 1041.4489473771887,
+        "temperature": 25.528298231214286,
+        "depth": 0.2921435335616845,
+        "dive": 0,
+        "lc": null
+    },
+    {
+        "company_number": "RG03",
+        "float_time": 13.288782835006714,
+        "pressure": 1041.4450781585067,
+        "temperature": 25.5390449876558,
+        "depth": 0.2921038003791902,
+        "dive": 0,
+        "lc": null
+    },
+    {
+        "company_number": "RG03",
+        "float_time": 16.01057243347168,
+        "pressure": 1041.3430597095517,
+        "temperature": 25.54524130102582,
+        "depth": 0.291056168290345,
+        "dive": 0,
+        "lc": null
+    },
+    {
+        "company_number": "RG03",
+        "float_time": 18.730815649032593,
+        "pressure": 1041.2735264433782,
+        "temperature": 25.546822650115356,
+        "depth": 0.29034212801986853,
+        "dive": 1,
+        "lc": "y"
+    }
+]

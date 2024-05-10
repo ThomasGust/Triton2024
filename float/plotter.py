@@ -9,7 +9,7 @@ LOG_INDEX = -1
 def plot_log():
     #fnames = os.listdir("float\\logs")
     #name = os.path.join("float\\logs", fnames[LOG_INDEX])
-    name = "log.json"
+    name = os.path.join("float\\logs", os.listdir('float\\logs')[-1])
     existing = len(os.listdir("float\\figures"))
 
     dir_path = os.path.join("float\\figures", str(existing))
@@ -17,7 +17,7 @@ def plot_log():
     
     with open(os.path.join(name), "r") as f:
         df = pd.read_json(f)
-        df = df[7:]
+        df = df[1:]
     
     st = df.iloc[0]['float_time']
 
@@ -38,7 +38,8 @@ def plot_log():
         plt.close()
 
         #Depth over time
-        plt.plot(time, data['depth'])
+        p = plt.plot(time, data['depth'])
+        plt.ylim(max(data['depth']), min(data['depth']))
         plt.title(f"Float Depth Over Time, Dive {i}")
         plt.xlabel("Time since recording was started (seconds)")
         plt.ylabel("Depth (meters)")
@@ -72,7 +73,7 @@ def plot_log():
 def compute_first_derivative():
     with open(os.path.join("log.json"), "r") as f:
         df = pd.read_json(f)
-        df = df[7:]
+        df = df[1:]
     
     times = list(df['float_time'])
     depths = list(df['depth'])
@@ -84,4 +85,4 @@ def compute_first_derivative():
 
 
 if __name__ == "__main__":
-    compute_first_derivative()
+    plot_log()
