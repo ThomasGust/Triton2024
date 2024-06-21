@@ -38,9 +38,9 @@ def timeout_decorator(timeout):
         return wrapper
     return decorator
 
-target_name = "raspberrypi"
-target_address = "B8:27:EB:A2:69:06"
-#target_address = "00:1A:7D:DA:71:13"
+target_name = "triton"
+#target_address = "B8:27:EB:D2:70:92"
+target_address = "00:1A:7D:DA:71:13"
 is_profiling = False
 
 
@@ -48,6 +48,7 @@ def find_float_device():
     global target_address
     nearby_devices = bluetooth.discover_devices()
     for bdaddr in nearby_devices:
+        print(nearby_devices)
         if target_name == bluetooth.lookup_name(bdaddr):
             target_address = bdaddr
             return True
@@ -169,14 +170,30 @@ class DataThread(threading.Thread):
         while True:
             self.connect()
             while not is_profiling:
+                current_data = json.load(open("float\\logs\\log_86.json", "r"))  
                 try:
                     data = self.recvall()
                 except TimeoutError or OSError as e:
+                    print("ERROR", e)
                     data = None
                 if data == None:
-                    data = json.load(open(self.log_name, "r"))
+                    data = json.load(open(self.log_name, "r"))  
                 
-                j = json.dumps(data, indent=4)
+                #Match up current data with new data using i field
+                current_is = [d["i"] for d in current_data]
+                new_is = [d["i"] for d in data]
+
+                data_dict = {}
+                for i in range(len(data)):
+                    data_dict[data[i]["i"]] = data[i]
+
+                for i in new_is:
+                    if i not in current_is:
+                        current_data.append(data_dict[i])
+
+                print(data[-1])
+                
+                j = json.dumps(current_data, indent=4)
                 with open(self.log_name, "w") as f:
                     f.write(j)
     
@@ -202,10 +219,10 @@ class DataThread(threading.Thread):
         j = json.loads(j)
 
         return j
-
+#1657 E Stone Drive STEB Kingsport Tennessee 37660 423-765-2679
 if __name__ == "__main__":
     #if find_float_device():
-    print(f"Found target bluetooth device with address {target_address}")
+    #find_float_device()
     
     command_thread = CommandThread(5)
     data_thread = DataThread(6)

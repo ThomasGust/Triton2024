@@ -1,0 +1,13 @@
+
+"VH" = 48cm
+
+"VR"= 45cm
+
+"VW"= 35cm
+
+"D1@Boss-Extrude3"= "VH"
+
+"D3@Sketch3"= "VR"
+
+"D4@Sketch3"= "VW"
+            

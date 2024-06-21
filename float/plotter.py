@@ -3,34 +3,44 @@ import matplotlib.pyplot as plt
 import os
 import json
 import pandas as pd
+from scipy.interpolate import interp1d
+import numpy as np
 
 LOG_INDEX = -1
 
 def plot_log():
-    #fnames = os.listdir("float\\logs")
-    #name = os.path.join("float\\logs", fnames[LOG_INDEX])
-    name = os.path.join("float\\logs", os.listdir('float\\logs')[-1])
-    existing = len(os.listdir("float\\figures"))
+    existing = int(len(os.listdir("float\\figures")))
+    dir_path = os.path.join("float\\figures", str(existing+1))
+    current_figures = os.mkdir(dir_path)
 
-    dir_path = os.path.join("float\\figures", str(existing))
-    os.mkdir(dir_path)
+    log_dir_path = "float\\logs"
+    log_name = f"log_{str(len(os.listdir(log_dir_path))-1)}.json"
+
+
     
-    with open(os.path.join(name), "r") as f:
+    with open(os.path.join(log_dir_path, log_name), "r") as f:
         df = pd.read_json(f)
-        df = df[1:]
+        print(df)
+        df = df[10:]
     
-    st = df.iloc[0]['float_time']
+    
+    st = df.iloc[0]['ft']
 
-    dives = df['dive'].unique().tolist()
+    dives = df['dc'].unique().tolist()
 
     for i, dive in enumerate(dives):
         
-        data = df[df['dive']==dive]
-        time = [t-st for t in list(data['float_time'])]
+        
+        data = df[df['dc']==dive]
+        time = [t-st for t in list(data['ft'])]
+        depth = [d + 0.4 for d in list(data['d'])]
+        #f = interp1d(data["depth"], time, kind='cubic')
+
+        #depth_dense = np.linspace(min(data["depth"]), max(data['depth']), 300)
 
         i+=1
         #Pressure over time
-        plt.plot(time, data['pressure']/1013)
+        plt.plot(time, data['p']/1013)
         plt.title(f"Float Pressure Data, Dive {i}")
         plt.xlabel("Time since recording was started (seconds)")
         plt.ylabel("Pressure (atm)")
@@ -38,8 +48,8 @@ def plot_log():
         plt.close()
 
         #Depth over time
-        p = plt.plot(time, data['depth'])
-        plt.ylim(max(data['depth']), min(data['depth']))
+        p = plt.plot(time, depth)
+        plt.ylim(max(depth), min(depth))
         plt.title(f"Float Depth Over Time, Dive {i}")
         plt.xlabel("Time since recording was started (seconds)")
         plt.ylabel("Depth (meters)")
@@ -47,7 +57,7 @@ def plot_log():
         plt.close()
 
         #Temperature over depth
-        plt.plot(time, data['temperature'])
+        plt.plot(time, data['t'])
         plt.title(f"Float Temperature Over Depth, Dive {i}")
         plt.xlabel("Depth (meters)")
         plt.ylabel("Temperature (C)")
@@ -55,7 +65,7 @@ def plot_log():
         plt.close()
 
         #Temperature over time
-        plt.plot(time, data['temperature'])
+        plt.plot(time, data['t'])
         plt.title(f"Float Temperature Over Time, Dive {i}")
         plt.xlabel("Time (seconds)")
         plt.ylabel("Temperature (C)")
@@ -63,7 +73,7 @@ def plot_log():
         plt.close()
 
         #Temperature over time
-        plt.plot(range(len(data['float_time'])), data['temperature'])
+        plt.plot(range(len(data['ft'])), data['t'])
         plt.title(f"Float Temperature Over Sensor Polls {i}")
         plt.xlabel("Sensor Polls")
         plt.ylabel("Temperature (C)")
@@ -75,8 +85,8 @@ def compute_first_derivative():
         df = pd.read_json(f)
         df = df[1:]
     
-    times = list(df['float_time'])
-    depths = list(df['depth'])
+    times = list(df['ft'])
+    depths = list(df['d'])
 
     velocities = [(depths[i+1]-depths[i])/(times[i+1]-times[i]) for i in range(len(times)-1)]
 
